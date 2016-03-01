@@ -1,0 +1,35 @@
+﻿<Window x:Class="TestCLI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:TestCLI="clr-namespace:TestCLI"
+        xmlns:ClassLibrary1="clr-namespace:ClassLibrary1;assembly=ClassLibrary1"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.DataContext>
+        <TestCLI:MainWindowViewModel />
+    </Window.DataContext>            
+    <Grid>
+        <Button HorizontalAlignment="Left" Margin="215,135,0,0" VerticalAlignment="Top" Width="75" Command="{Binding HelloWorldCommand}" >
+            <Button.Content>
+                <TextBlock>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Model.State}" Value="{x:Static ClassLibrary1:EState.eStateOne}">
+                                    <Setter Property="Text" Value="One" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Model.State}" Value="{x:Static ClassLibrary1:EState.eStateTwo}">
+                                    <Setter Property="Text" Value="Two" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Model.State}" Value="{x:Static ClassLibrary1:EState.eStateThree}">
+                                    <Setter Property="Text" Value="Three" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+    </Grid>
+</Window>
